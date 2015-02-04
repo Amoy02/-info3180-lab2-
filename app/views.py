@@ -5,7 +5,7 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 
 This file creates your application.
 """
-
+import time
 from app import app
 from flask import render_template, request, redirect, url_for
 
@@ -56,7 +56,11 @@ def page_not_found(error):
 @app.route('/profile/')
 def profile():
   """Render the website profile page"""
-  return render_template('profile.html')
+  return render_template('profile.html', time=timeinfo())
+
+def timeinfo():
+  now = time.strftime("%d/%m/%Y")
+  return now
 
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0",port="8888")
